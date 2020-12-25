@@ -71,7 +71,7 @@ export default {
 <style lang="less" scoped>
   @import '~@/styles/public.less';
   .row-scroll::-webkit-scrollbar {
-    height: 1px;
+    height: 1px!important;
   }
   .tag-active {
     background-color: @buttonback!important;

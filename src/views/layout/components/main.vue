@@ -31,7 +31,6 @@ export default {
             })
           }
         })
-        console.log(this.caches)
       },
       deep: true,
       immediate: true

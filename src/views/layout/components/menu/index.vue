@@ -52,13 +52,10 @@ export default {
 <style lang="less" scoped>
   @import '~@/styles/public';
   .column-scroll::-webkit-scrollbar {
-    width: 0px;
+    width: 0px!important;
   }
   .column-scroll::-webkit-scrollbar-thumb {
-    background: @menubackactive;
-  }
-  .column-scroll::-webkit-scrollbar-track {
-    background: @menuback;
+    background: @menubackactive!important;
   }
   .column-scroll {
     max-height: calc(100vh - 40px);
