@@ -181,6 +181,12 @@ export const columns = {
       label: '名称',
       align: 'center'
     },
+    gender: {
+      show: true,
+      width: '',
+      label: '性别',
+      align: 'center'
+    },
     phone: {
       show: true,
       width: '',
@@ -192,6 +198,13 @@ export const columns = {
       width: '',
       label: '邮箱',
       align: 'center'
+    },
+    dept: {
+      show: true,
+      width: '',
+      label: '部门',
+      align: 'center',
+      child: 'name'
     },
     enabled: {
       show: true,
