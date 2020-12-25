@@ -1,0 +1,172 @@
+@fontcolor: #707070;
+@fontdeepcolor: #36434d;
+@menuback: #1F335C;
+@menubackactive: #0F1324;
+@menubackhover: rgb(25, 41, 74);
+@blue: #409EFF;
+@linkcolor: #3188C9;
+@linkcoloractive: #005999;
+@buttonback: #3188C9;
+@appheaderback: #fff;
+@apptagsback: #fff;
+@scrollbarthumb: #bebebe;
+@scrollbartrack: rgba(0, 0, 0, 0.2);
+@bordercolor: rgb(220, 223, 230);
+@headerback: #fff;
+@tableheader: #E8EEFB;
+@yellow: #FFAF00;
+@green: #5BFA5B;
+@red: #E95B39;
+@disback: #EFEFEF;
+@inputbordercolor: rgb(220, 223, 230);
+@inputradius: 4px;
+@cardradius: 5px;
+
+.flex(@item,@iswrap,@justify,@align){
+  display: flex;
+  flex-flow: @item @iswrap;
+  justify-content: @justify;
+  align-items: @align;
+}
+.flex(@justify,@align){
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: @justify;
+  align-items: @align;
+}
+.flex-start-start{
+  .flex(flex-start, flex-start);
+}
+.flex-start-center{
+  .flex(flex-start, center);
+}
+.flex-wrap-center{
+  .flex(row, wrap, flex-start, center);
+}
+.flex-center-center{
+  .flex(center, center);
+}
+.flex-between-center{
+  .flex(space-between, center);
+}
+.flex-around-center{
+  .flex(space-around, center);
+}
+.flex-end-center{
+  .flex(flex-end, center);
+}
+
+.app-container {
+  padding: 10px;
+  overflow: hidden;
+}
+
+.link {
+  color: @linkcolor!important;
+  cursor: pointer;
+}
+.pointer {
+  cursor: pointer;
+}
+.link:hover {
+  color: @linkcoloractive!important;
+}
+
+.dis-select {
+  -moz-user-select: none;
+  -o-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.column-scroll {
+  overflow-y: scroll!important;
+  overflow-x: hidden!important;
+}
+.column-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+.column-scroll::-webkit-scrollbar-thumb {
+  // 方块
+  border-radius: 5px;
+  background: @scrollbarthumb;
+}
+
+.row-scroll {
+  overflow-y: hidden!important;
+  overflow-x: scroll!important;
+}
+.row-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+.row-scroll::-webkit-scrollbar-thumb {
+  // 方块
+  border-radius: 6px;
+  background: @scrollbarthumb;
+}
+
+.table-header {
+  background-color: @headerback;
+  border: solid 1px @inputbordercolor;
+  border-bottom: none;
+  height: 40px;
+  // border-bottom: solid 1px $yellow;
+  border-top-left-radius: @inputradius;
+  border-top-right-radius: @inputradius;
+  padding: 0 10px 0 20px;
+}
+.table-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: @fontdeepcolor;
+  position: relative;
+}
+.table-title::before {
+  content: "";
+  width: 3px;
+  height: 1em;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  left: -6px;
+  background-color: #3188C9;
+}
+
+.head-container {
+  border-radius: @cardradius;
+  padding: 0 10px 0 0;
+}
+
+.header-item {
+  .flex-start-center;
+  margin-right: 5px;
+  margin-bottom: 10px;
+  .label {
+      flex-shrink: 0;
+      margin-right: 5px;
+  }
+  input {
+      width: 185px;
+  }
+  .sell-input {
+      input {
+          width: 100%!important;
+      }
+  }
+  .vue-treeselect {
+      width: 185px;
+      margin-bottom: 0!important;
+  }
+}
+
+.border {
+  border: solid 1px @inputbordercolor;
+  border-radius: @inputradius;
+  padding-left: 10px;
+  font-size: 12px;
+  color: @fontcolor;
+}
+

@@ -1,0 +1,136 @@
+@import './public.less';
+
+.sidebar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 195px;
+  background-color: @menuback;
+  transition: width 0.28s;
+  height: 100vh;
+  z-index: 1001;
+  overflow: hidden;
+  .el-menu {
+    border: none;
+    height: 100%;
+    width: 100% !important;
+  }
+  .el-menu .is-active {
+    background-color: @menubackactive!important;
+  }
+}
+.hideSidebar {
+  .sidebar-container {
+    width: 36px !important;
+  }
+  .app-main {
+    padding-left: 36px!important;
+  }
+  .el-submenu {
+    overflow: hidden;
+    &>.el-submenu__title {
+      padding-left: 10px !important;
+      .el-submenu__icon-arrow {
+        display: none;
+      }
+    }
+  }
+  .el-submenu__title {
+    i {
+      transform: translateX(-4px);
+    }
+  }
+  .el-menu-item {
+    i {
+      transform: translateX(-14px);
+    }
+  }
+}
+
+.tag-active .el-tag__close {
+  color: #fff!important;
+}
+.tag-active .el-tag__close:hover {
+  background-color: #bebebe!important;
+}
+
+.el-menu {
+  .dis-select;
+}
+
+.el-dialog__body::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 5px;
+}
+.el-dialog__body::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 10px;
+  //box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: #DDDDDD;
+}
+.el-dialog__body::-webkit-scrollbar-thumb:hover {
+  background: @fontcolor;
+}
+.el-dialog__title {
+  padding-left: 6px;
+  font-weight: bolder;
+  position: relative;
+  font-size: 16px;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    height: .9em;
+    width: 3px;
+    transform: translateY(-50%);
+    background: @buttonback;
+  }
+}
+.el-dialog__header {
+  border-bottom: solid 1px @bordercolor;
+}
+.el-dialog__footer {
+  border-top: solid 1px @bordercolor;
+}
+
+.el-table__body-wrapper::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  height: 8px;
+}
+.el-table__body-wrapper::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 6px;
+  background: @scrollbarthumb;
+}
+
+.el-table__header th {
+  background-color: @tableheader;
+}
+.el-table__header th .cell {
+  color: @fontdeepcolor!important;
+  font-weight: bold;
+}
+
+.el-button--primary {
+  background-color: @buttonback;
+  border-color: @buttonback;
+}
+.el-button--text {
+  color: @linkcolor!important;
+}
+.el-button--text:hover {
+  color: @linkcoloractive!important;
+}
+.el-button--text {
+  width: auto!important;
+}
+
+.el-pager .active {
+  background-color: @buttonback!important;
+}
+.el-pagination.is-background button.btn-prev,
+.el-pagination.is-background button.btn-next,
+.el-pagination.is-background ul.el-pager li {
+  background-color: white;
+}
