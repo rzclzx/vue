@@ -144,6 +144,7 @@ import Form from './form'
 import { del } from '@/api/dict'
 import DictDetail from './detail'
 export default {
+  name: 'Dict',
   components: {
     Form, 
     TableSet, 

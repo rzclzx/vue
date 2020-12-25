@@ -105,7 +105,7 @@ export default {
     height: 24px;
     i {
       color: #fff;
-      margin-right: 10px;
+      margin-right: 12px;
     }
   }
   .app-expand:hover {

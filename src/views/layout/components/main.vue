@@ -26,11 +26,12 @@ export default {
           if (item.children) {
             item.children.forEach(child => {
               if (!child.meta.noCache) {
-                this.caches.push(child.path);
+                this.caches.push(child.name);
               }
             })
           }
         })
+        console.log(this.caches)
       },
       deep: true,
       immediate: true

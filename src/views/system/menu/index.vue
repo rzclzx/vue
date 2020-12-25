@@ -139,7 +139,7 @@ import TableTrans from '@/components/Table/TableTrans'
 import Form from './form'
 import { del, get } from '@/api/menu'
 export default {
-  name: 'menus',
+  name: 'Menu',
   components: {
     Form, 
     TableSet, 

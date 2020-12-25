@@ -7,7 +7,7 @@
           <el-breadcrumb-item 
             :key="item.path" 
             v-if="item.path && item.path != '/dashboard'"
-          >{{ item.name }}</el-breadcrumb-item>
+          >{{ item.meta.title }}</el-breadcrumb-item>
         </template>
       </el-breadcrumb>
     </div>

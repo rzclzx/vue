@@ -17,7 +17,7 @@
       @click="focusTag(tag)"
       @close="closeTag(tag)"
     >
-      {{tag.name}}
+      {{tag.meta.title}}
     </el-tag>
   </div>
 </template>
@@ -75,7 +75,7 @@ export default {
   }
   .tag-active {
     background-color: @buttonback!important;
-    color: #fff;
+    color: #fff!important;
   }
   .tag-cell {
     margin-right:5px;

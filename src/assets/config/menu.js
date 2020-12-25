@@ -12,7 +12,7 @@ export default [
     // 无子菜单
     single: true,
     meta: {
-      icon: 'el-icon-s-operation',
+      icon: 'dashboard',
       title: '首页',
       noCache: false,
     },

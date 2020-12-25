@@ -136,7 +136,7 @@ import TableTrans from '@/components/Table/TableTrans'
 import Form from './form'
 import { del } from '@/api/user'
 export default {
-  name: 'user',
+  name: 'User',
   components: {
     Form, 
     TableSet, 
