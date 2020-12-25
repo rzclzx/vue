@@ -41,8 +41,9 @@ let actions = {
   LoadMenus ({ commit }, data) {
     return new Promise((resolve, reject) => {
       buildMenus().then(res => {
-        // 实际需要concat   res
+        res = res || [];
         let menus = menusConfig;
+        menus = menus.concat(res);
         menus = filterAsyncRouter(menus);
         commit('SET_MENUS', menus);
         resolve(menus);

@@ -30,59 +30,59 @@ export default [
     ]
   },
   // 二级菜单格式
-  {
-    name: '系统管理',
-    path: '/system',
-    hidden: false,
-    component: 'Layout',
-    meta: {
-      icon: 'el-icon-setting',
-      title: '系统管理',
-      noCache: false,
-    },
-    children: [
-      {
-        name: '用户管理',
-        path: 'user',
-        hidden: false,
-        component: 'system/user/index',
-        meta: {
-          title: '用户管理',
-          noCache: false
-        }
-      },
-      {
-        name: '角色管理',
-        path: 'role',
-        hidden: false,
-        component: 'system/role/index',
-        meta: {
-          title: '角色管理',
-          noCache: false
-        }
-      },
-      {
-        name: '菜单管理',
-        path: 'menu',
-        hidden: false,
-        component: 'system/menu/index',
-        meta: {
-          title: '菜单管理',
-          noCache: false
-        }
-      },
-      {
-        name: '字典管理',
-        path: 'dict',
-        hidden: false,
-        component: 'system/dict/index',
-        meta: {
-          title: '字典管理',
-          noCache: false
-        }
-      },
-    ]
-  },
+  // {
+  //   name: '系统管理',
+  //   path: '/system',
+  //   hidden: false,
+  //   component: 'Layout',
+  //   meta: {
+  //     icon: 'el-icon-setting',
+  //     title: '系统管理',
+  //     noCache: false,
+  //   },
+  //   children: [
+  //     {
+  //       name: '用户管理',
+  //       path: 'user',
+  //       hidden: false,
+  //       component: 'system/user/index',
+  //       meta: {
+  //         title: '用户管理',
+  //         noCache: true
+  //       }
+  //     },
+  //     {
+  //       name: '角色管理',
+  //       path: 'role',
+  //       hidden: false,
+  //       component: 'system/role/index',
+  //       meta: {
+  //         title: '角色管理',
+  //         noCache: false
+  //       }
+  //     },
+  //     {
+  //       name: '菜单管理',
+  //       path: 'menu',
+  //       hidden: false,
+  //       component: 'system/menu/index',
+  //       meta: {
+  //         title: '菜单管理',
+  //         noCache: false
+  //       }
+  //     },
+  //     {
+  //       name: '字典管理',
+  //       path: 'dict',
+  //       hidden: false,
+  //       component: 'system/dict/index',
+  //       meta: {
+  //         title: '字典管理',
+  //         noCache: false
+  //       }
+  //     },
+  //   ]
+  // },
   // 错误路径定向到首页
   {
     path: '*', 
