@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       headers: { 'Authorization': 'Bearer ' + getToken() },
-      baseApi: process.env.BASE_API
+      baseApi: process.env.VUE_APP_BASE_API
     }
   },
   methods: {

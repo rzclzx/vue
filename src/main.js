@@ -11,6 +11,7 @@ import columnsInit from '@/assets/config/columns'
 import ImgIcon from '@/components/ImgIcon'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import svgInit from '@/components/SvgIcon/index.js'
+import '@/styles/reset.less'
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/styles/public.less'
 import '@/styles/element.less'
@@ -38,6 +39,5 @@ new Vue({
   el: '#app',
   router,
   store,
-  components: { App },
-  template: '<App/>'
+  render: h => h(App)
 })

@@ -22,7 +22,7 @@ module.exports = {
     port: port,
     overlay: {
       warnings: false,
-      errors: true
+      errors: false
     },
     proxy: {
       '/base-url/': {
