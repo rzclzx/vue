@@ -2,7 +2,7 @@
   <el-dialog
     :visible.sync="dialog"
     :close-on-click-modal="false"
-    :before-close="cancel"
+    @closed="resetForm"
     :title="`请选择${title}`"
     append-to-body
     width="550px"
@@ -96,8 +96,10 @@ export default {
       }
     },
     cancel () {
-      this.query = '' // 清空搜索框
       this.dialog = false;
+    },
+    resetForm() {
+      this.query = '';
     },
     doSubmit () {
       this.$emit('change', this.selfVals);

@@ -2,7 +2,7 @@
   <el-dialog 
     :visible.sync="dialog" 
     :close-on-click-modal="false" 
-    :before-close="cancel" 
+    @closed="resetForm" 
     :title="isAdd ? '新增' : '修改'" 
     append-to-body 
     width="400px"
@@ -109,7 +109,7 @@ export default {
   },
   methods: {
     cancel () {
-      this.resetForm();
+      this.dialog = false;
     },
     doSubmit () {
       this.$refs.form.validate((valid) => {
@@ -124,7 +124,7 @@ export default {
     },
     doAdd() {
       add(this.form).then(res => {
-        this.resetForm()
+        this.cancel();
         this.$notify({
           title: '添加成功',
           type: 'success',
@@ -137,7 +137,7 @@ export default {
     },
     doEdit() {
       edit(this.form).then(res => {
-        this.resetForm()
+        this.cancel();
         this.$notify({
           title: '修改成功',
           type: 'success',

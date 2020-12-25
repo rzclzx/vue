@@ -2,7 +2,7 @@
   <el-dialog 
     :visible.sync="dialog" 
     :close-on-click-modal="false" 
-    :before-close="cancel" 
+    @closed="resetForm" 
     :title="isAdd ? '新增' : '修改'" 
     append-to-body 
     width="400px"
@@ -50,12 +50,12 @@ export default {
   },
   computed: {
     dict () {
-      return this.$store.state.app.dict || {}
+      return this.$store.state.app.dict || {};
     }
   },
   methods: {
     cancel () {
-      this.resetForm();
+      this.dialog = false;
     },
     doSubmit () {
       this.$refs.form.validate((valid) => {
@@ -70,33 +70,33 @@ export default {
     },
     doAdd() {
       add(this.form).then(res => {
-        this.resetForm()
+        this.cancel();
         this.$notify({
           title: '添加成功',
           type: 'success',
           duration: 2500
-        })
-        this.$parent.init()
+        });
+        this.$parent.init();
       }).catch(err => {
-        console.log(err)
+        console.log(err);
       })
     },
     doEdit() {
       edit(this.form).then(res => {
-        this.resetForm()
+        this.cancel();
         this.$notify({
           title: '修改成功',
           type: 'success',
           duration: 2500
-        })
-        this.$parent.init()
+        });
+        this.$parent.init();
       }).catch(err => {
-        console.log(err)
+        console.log(err);
       })
     },
     resetForm () {
-      this.dialog = false
-      this.$refs.form.resetFields()
+      this.dialog = false;
+      this.$refs.form.resetFields();
       this.form = {};
     }
   }

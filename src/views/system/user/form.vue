@@ -2,7 +2,7 @@
   <el-dialog 
     :visible.sync="dialog" 
     :close-on-click-modal="false" 
-    :before-close="cancel" 
+    @closed="resetForm" 
     :title="isAdd ? '新增' : '修改'" 
     append-to-body 
     width="400px"
@@ -61,6 +61,12 @@
           </el-option>
         </el-select>
       </el-form-item>
+      <el-form-item label="性别" prop="gender">
+        <el-radio-group v-model="form.gender">
+          <el-radio :label="'男'">男</el-radio>
+          <el-radio :label="'女'">女</el-radio>
+        </el-radio-group>
+      </el-form-item>
       <el-form-item label="状态" prop="enabled">
         <el-radio-group v-model="form.enabled">
           <el-radio 
@@ -92,12 +98,22 @@ export default {
     return {
       dialog: false,
       form: {
-        enabled: true
+        enabled: true,
+        gender: '男'
       },
       rules: {
-        // label: [
-        //   { required: true, message: '请输入名称', trigger: 'blur' }
-        // ]
+        username: [
+          { required: true, message: '请输入用户名', trigger: 'blur' }
+        ],
+        phone: [
+          { required: true, message: '请输入电话', trigger: 'blur' }
+        ],
+        nickName: [
+          { required: true, message: '请输入名称', trigger: 'blur' }
+        ],
+        email: [
+          { required: true, message: '请输入邮箱', trigger: 'blur' }
+        ]
       },
       roles: []
     }
@@ -109,7 +125,7 @@ export default {
   },
   methods: {
     cancel () {
-      this.resetForm();
+      this.dialog = false;
     },
     doSubmit () {
       this.$refs.form.validate((valid) => {
@@ -124,35 +140,35 @@ export default {
     },
     doAdd() {
       add(this.form).then(res => {
-        this.resetForm()
+        this.cancel();
         this.$notify({
           title: '添加成功',
           type: 'success',
           duration: 2500
-        })
-        this.$parent.init()
+        });
+        this.$parent.init();
       }).catch(err => {
-        console.log(err)
+        console.log(err);
       })
     },
     doEdit() {
       edit(this.form).then(res => {
-        this.resetForm()
+        this.cancel();
         this.$notify({
           title: '修改成功',
           type: 'success',
           duration: 2500
-        })
-        this.$parent.init()
+        });
+        this.$parent.init();
       }).catch(err => {
-        console.log(err)
+        console.log(err);
       })
     },
     resetForm () {
-      this.dialog = false
-      this.$refs.form.resetFields()
+      this.$refs.form.resetFields();
       this.form = {
-        enabled: true
+        enabled: true,
+        gender: '男'
       };
     }
   }

@@ -105,7 +105,7 @@ export default {
   },
   computed: {
     dict () {
-      return this.$store.state.app.dict || {}
+      return this.$store.state.app.dict || {};
     }
   },
   methods: {
@@ -115,7 +115,7 @@ export default {
     load(tree, treeNode, resolve) {
       // 后端懒加载
       getMenus({ pid: tree.id }).then(res => {
-        resolve(res.content)
+        resolve(res.content);
       })
       // 前端懒加载 :tree-props="{children: 'child', hasChildren: 'hasChild'}"
       // table 列表数据 data 拿到后调用 下面addChild方法
@@ -140,9 +140,9 @@ export default {
     },
     download() {
       downApi(this.params).then(result => {
-        this.$utils.downloadFile(result, 'AntiCaseApply列表', 'xlsx')
+        this.$utils.downloadFile(result, 'AntiCaseApply列表', 'xlsx');
       }).catch(err => {
-        console.log(err)
+        console.log(err);
       })
     }
   }
