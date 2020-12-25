@@ -1,5 +1,55 @@
 // 表格信息配置项
 export const columns = {
+  job: {
+    name: {
+      show: true,
+      width: '',
+      label: '名称',
+      align: 'center'
+    },
+    jobSort: {
+      show: true,
+      width: '',
+      label: '排序',
+      align: 'center'
+    },
+    enabled: {
+      show: true,
+      width: '',
+      label: '状态',
+      align: 'center',
+      dict: 'enabled'
+    },
+    createTime: {
+      show: true,
+      width: '',
+      label: '创建日期',
+      align: 'center',
+      time: true
+    },
+  },
+  dept: {
+    deptSort: {
+      show: true,
+      width: '',
+      label: '排序',
+      align: 'center'
+    },
+    enabled: {
+      show: true,
+      width: '',
+      label: '状态',
+      align: 'center',
+      dict: 'enabled'
+    },
+    createTime: {
+      show: true,
+      width: '',
+      label: '创建日期',
+      align: 'center',
+      time: true
+    },
+  },
   dictDetail: {
     label: {
       show: true,
@@ -81,7 +131,8 @@ export const columns = {
       show: true,
       width: '',
       label: '创建日期',
-      align: 'center'
+      align: 'center',
+      time: true
     },
   },
   role: {
@@ -113,7 +164,8 @@ export const columns = {
       show: true,
       width: '',
       label: '创建日期',
-      align: 'center'
+      align: 'center',
+      time: true
     },
   },
   user: {
@@ -146,7 +198,7 @@ export const columns = {
       width: '',
       label: '状态',
       align: 'center',
-      time: true
+      dict: 'enabled'
     },
     createTime: {
       show: true,
