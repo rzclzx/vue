@@ -50,12 +50,9 @@
 </template>
 
 <script>
-import { add, edit } from '@/api/role';
+import { add, edit } from '@/api/role'
 export default {
   props: ['isAdd'],
-  created() {
-    
-  },
   data() {
     return {
       dialog: false,

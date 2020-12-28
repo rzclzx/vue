@@ -32,12 +32,11 @@
       <el-form-item :label="title">
         <div>
           <el-tree
-            class="var-tree"
             :class="{'var-single': single}"
             ref="tree"
             style="width:350px"
             v-if="dialog"
-            :data="options"
+            :data="data"
             :props="{
               label: labelkey,
               children: childkey
@@ -65,7 +64,7 @@
 <script>
 export default {
   components: {},
-  props: ['title', 'options', 'vals', 'labelkey', 'childkey', 'valuekey', 'single'],
+  props: ['title', 'data', 'vals', 'labelkey', 'childkey', 'valuekey', 'single'],
   watch: {
     vals: {
       handler () {
@@ -85,7 +84,7 @@ export default {
   },
   methods: {
     valObj (val) {
-      return this.$utils.getChildByKey(this.options, this.valuekey, this.childkey, val) || {};
+      return this.$utils.getChildByKey(this.data, this.valuekey, this.childkey, val) || {};
     },
     handleClose (val) {
       this.selfVals.splice(this.selfVals.indexOf(val), 1);

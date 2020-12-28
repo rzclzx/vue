@@ -38,9 +38,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-  @import "~@/styles/public.scss";
+<style lang="less" scoped>
+  @import "~@/styles/public.less";
   .borderRight {
-    border-right: solid 1px $inputbordercolor;
+    border-right: solid 1px @bordercolor;
   }
 </style>

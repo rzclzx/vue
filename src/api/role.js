@@ -1,5 +1,13 @@
 import request from './axios/baseAxios'
 
+export function saveMenu(data) {
+  return request({
+    url: 'api/roles/menu',
+    method: 'put',
+    data
+  })
+}
+
 export function getAll(params) {
   return request({
     url: 'api/roles/all',

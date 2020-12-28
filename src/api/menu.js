@@ -1,5 +1,13 @@
 import request from './axios/baseAxios'
 
+export function getMenusTree(params) {
+  return request({
+    url: 'api/menus/tree',
+    method: 'get',
+    params
+  })
+}
+
 export function buildMenus() {
   return request({
     url: 'api/menus/build',
