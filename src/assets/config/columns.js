@@ -113,19 +113,22 @@ export const columns = {
       show: true,
       width: '',
       label: '外链',
-      align: 'center'
+      align: 'center',
+      dict: 'boolean'
     },
     cache: {
       show: true,
       width: '',
       label: '缓存',
-      align: 'center'
+      align: 'center',
+      dict: 'boolean'
     },
     hidden: {
       show: true,
       width: '',
-      label: '可见',
-      align: 'center'
+      label: '隐藏',
+      align: 'center',
+      dict: 'boolean'
     },
     createTime: {
       show: true,

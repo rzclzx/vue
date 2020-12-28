@@ -50,12 +50,12 @@
     <!-- 数字输入框 -->
     <el-form-item label="角色级别" prop="level">
       <el-input-number
-          style="width:250px"
-          :max="10000"
-          :min="0"
-          :controls="false"
-          size="mini" 
-          v-model="form.level"
+        style="width:250px"
+        :max="10000"
+        :min="0"
+        :controls="false"
+        size="mini" 
+        v-model="form.level"
       ></el-input-number>
     </el-form-item>
     <!-- 文件上传 -->

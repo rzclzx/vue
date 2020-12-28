@@ -5,7 +5,7 @@
     @closed="resetForm" 
     :title="isAdd ? '新增' : '修改'" 
     append-to-body 
-    width="400px"
+    width="800px"
   >
     <el-form 
       ref="form" 
@@ -14,11 +14,91 @@
       size="small" 
       label-width="90px"
       style="width: 100%"
+      inline
     >
-      <el-form-item label="名称" prop="nickName">
+      <el-form-item label="菜单类型" prop="type" style="width: 100%">
+        <el-radio-group v-model="form.type" size="mini">
+          <el-radio-button label="0">目录</el-radio-button>
+          <el-radio-button label="1">菜单</el-radio-button>
+          <el-radio-button label="2">按钮</el-radio-button>
+        </el-radio-group>
+      </el-form-item>
+      <el-form-item label="外链菜单" prop="iframe" v-if="form.type == '1'">
+        <el-radio-group v-model="form.iframe" size="mini" style="width:250px">
+          <el-radio-button 
+            v-for="item in dict.boolean ? dict.boolean.list : []" 
+            :key="item.value"
+            :label="item.value"
+          >{{ item.label }}</el-radio-button>
+        </el-radio-group>
+      </el-form-item>
+      <el-form-item label="菜单缓存" prop="cache" v-if="form.type == '1'">
+        <el-radio-group v-model="form.cache" size="mini" style="width:250px">
+          <el-radio-button 
+            v-for="item in dict.boolean ? dict.boolean.list : []" 
+            :key="item.value"
+            :label="item.value"
+          >{{ item.label }}</el-radio-button>
+        </el-radio-group>
+      </el-form-item>
+      <el-form-item label="菜单隐藏" prop="hidden" v-if="form.type == '0' || form.type == '1'">
+        <el-radio-group v-model="form.hidden" size="mini" style="width:250px">
+          <el-radio-button 
+            v-for="item in dict.boolean ? dict.boolean.list : []" 
+            :key="item.value"
+            :label="item.value"
+          >{{ item.label }}</el-radio-button>
+        </el-radio-group>
+      </el-form-item>
+      <el-form-item label="名称" prop="title">
         <el-input 
           size="mini" 
-          v-model="form.name" 
+          v-model="form.title" 
+          style="width:250px" 
+        />
+      </el-form-item>
+      <el-form-item label="权限标识" prop="permission" v-if="form.type == '2' || form.type == '1'">
+        <el-input 
+          size="mini" 
+          v-model="form.permission" 
+          style="width:250px" 
+        />
+      </el-form-item>
+      <el-form-item label="路由地址" prop="path" v-if="form.type == '1'">
+        <el-input 
+          size="mini" 
+          v-model="form.path" 
+          style="width:250px" 
+        />
+      </el-form-item>
+      <el-form-item label="排序" prop="menuSort" v-if="form.type == '0' || form.type == '1'">
+        <el-input-number
+          style="width:250px"
+          :max="10000"
+          :min="0"
+          :controls="false"
+          size="mini" 
+          v-model="form.menuSort"
+        ></el-input-number>
+      </el-form-item>
+      <el-form-item label="组件名称" prop="componentName" v-if="form.type == '1'">
+        <el-input 
+          size="mini" 
+          v-model="form.componentName" 
+          style="width:250px" 
+        />
+      </el-form-item>
+      <el-form-item label="组件路径" prop="component" v-if="form.type == '1'">
+        <el-input 
+          size="mini" 
+          v-model="form.component" 
+          style="width:250px" 
+        />
+      </el-form-item>
+      <el-form-item label="上级目录" prop="pid">
+        <el-input 
+          size="mini" 
+          v-model="form.pid" 
           style="width:250px" 
         />
       </el-form-item>
@@ -40,7 +120,12 @@ export default {
   data() {
     return {
       dialog: false,
-      form: {},
+      form: {
+        type: '1',
+        iframe: false,
+        cache: false,
+        hidden: false
+      },
       rules: {
         // label: [
         //   { required: true, message: '请输入名称', trigger: 'blur' }
@@ -97,7 +182,12 @@ export default {
     resetForm () {
       this.dialog = false
       this.$refs.form.resetFields()
-      this.form = {};
+      this.form = {
+        type: '1',
+        iframe: false,
+        cache: false,
+        hidden: false
+      };
     }
   }
 }
