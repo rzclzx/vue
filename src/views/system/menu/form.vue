@@ -137,7 +137,8 @@ export default {
         type: '1',
         iframe: false,
         cache: false,
-        hidden: false
+        hidden: false,
+        menuSort: 999
       },
       rules: {
         // label: [
@@ -205,7 +206,8 @@ export default {
         type: '1',
         iframe: false,
         cache: false,
-        hidden: false
+        hidden: false,
+        menuSort: 999
       };
     }
   }

@@ -154,7 +154,7 @@ export default {
   methods: {
     beforeInit() {
       this.url = 'api/job';
-      const sort = 'id,desc';
+      const sort = 'jobSort,asc';
       this.params = Object.assign({ page: this.page, size: this.size, sort: sort }, this.query);
       return true;
     },

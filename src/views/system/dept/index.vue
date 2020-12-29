@@ -159,7 +159,7 @@ export default {
   methods: {
     beforeInit() {
       this.url = 'api/dept';
-      const sort = 'id,desc';
+      const sort = 'deptSort,asc';
       this.params = Object.assign({ page: this.page, size: this.size, sort: sort }, this.query);
       return true;
     },

@@ -56,7 +56,9 @@ export default {
   data() {
     return {
       dialog: false,
-      form: {},
+      form: {
+        level: 3
+      },
       rules: {
         // label: [
         //   { required: true, message: '请输入名称', trigger: 'blur' }
@@ -113,7 +115,9 @@ export default {
     resetForm () {
       this.dialog = false;
       this.$refs.form.resetFields();
-      this.form = {};
+      this.form = {
+        level: 3
+      };
     }
   }
 }

@@ -92,7 +92,8 @@ export default {
     return {
       dialog: false,
       form: {
-        enabled: true
+        enabled: true,
+        deptSort: 999
       },
       rules: {
         // label: [
@@ -169,7 +170,8 @@ export default {
       this.dialog = false
       this.$refs.form.resetFields()
       this.form = {
-        enabled: true
+        enabled: true,
+        deptSort: 999
       };
     }
   }

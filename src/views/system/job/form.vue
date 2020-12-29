@@ -15,51 +15,22 @@
       label-width="90px"
       style="width: 100%"
     >
-      <el-form-item label="用户名" prop="username">
+      <el-form-item label="名称" prop="name">
         <el-input 
           size="mini" 
-          v-model="form.username" 
+          v-model="form.name" 
           style="width:250px" 
         />
       </el-form-item>
-      <el-form-item label="电话" prop="phone">
-        <el-input 
+      <el-form-item label="排序" prop="jobSort">
+        <el-input-number
+          style="width:250px"
+          :max="10000"
+          :min="0"
+          :controls="false"
           size="mini" 
-          v-model="form.phone" 
-          style="width:250px" 
-        />
-      </el-form-item>
-      <el-form-item label="名称" prop="nickName">
-        <el-input 
-          size="mini" 
-          v-model="form.nickName" 
-          style="width:250px" 
-        />
-      </el-form-item>
-      <el-form-item label="邮箱" prop="email">
-        <el-input 
-          size="mini" 
-          v-model="form.email" 
-          style="width:250px" 
-        />
-      </el-form-item>
-      <el-form-item label="角色岗位" prop="roles">
-        <el-select 
-          clearable
-          multiple
-          v-model="form.roles" 
-          style="width: 250px" 
-          placeholder="请选择角色"
-          value-key="id"
-        >
-          <el-option
-            v-for="item in roles"
-            :key="item.id"
-            :label="item.name"
-            :value="item"
-          >
-          </el-option>
-        </el-select>
+          v-model="form.jobSort"
+        ></el-input-number>
       </el-form-item>
       <el-form-item label="状态" prop="enabled">
         <el-radio-group v-model="form.enabled">
@@ -80,26 +51,20 @@
 
 <script>
 import { add, edit } from '@/api/job'
-import { getAll } from '@/api/role'
 export default {
   props: ['isAdd'],
-  created() {
-    getAll().then(res => {
-      this.roles = res || [];
-    })
-  },
   data() {
     return {
       dialog: false,
       form: {
-        enabled: true
+        enabled: true,
+        jobSort: 999
       },
       rules: {
         // label: [
         //   { required: true, message: '请输入名称', trigger: 'blur' }
         // ]
-      },
-      roles: []
+      }
     }
   },
   computed: {
@@ -152,7 +117,8 @@ export default {
       this.dialog = false
       this.$refs.form.resetFields()
       this.form = {
-        enabled: true
+        enabled: true,
+        jobSort: 999
       };
     }
   }
