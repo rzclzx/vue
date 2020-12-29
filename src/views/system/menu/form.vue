@@ -102,6 +102,7 @@
           :options="menus"
           style="width: 250px"
           placeholder="顶级目录"
+          @select="select"
         />
       </el-form-item>
     </el-form>
@@ -115,16 +116,19 @@
 <script>
 import { add, edit, getMenusTree } from '@/api/menu'
 import Treeselect from '@riophae/vue-treeselect'
-import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 export default {
   components: {
     Treeselect
   },
   props: ['isAdd'],
-  created() {
-    getMenusTree().then(res => {
-      this.menus = res || [];
-    })
+  watch: {
+    dialog(value) {
+      if (value) {
+        getMenusTree().then(res => {
+          this.menus = res || [];
+        })
+      }
+    }
   },
   data() {
     return {
@@ -140,7 +144,8 @@ export default {
         //   { required: true, message: '请输入名称', trigger: 'blur' }
         // ]
       },
-      menus: []
+      menus: [],
+      pid: ''
     }
   },
   computed: {
@@ -151,6 +156,9 @@ export default {
   methods: {
     cancel () {
       this.dialog = false;
+    },
+    select(item) {
+      this.pid = item.pid;
     },
     doSubmit () {
       this.$refs.form.validate((valid) => {
@@ -172,7 +180,7 @@ export default {
           type: 'success',
           duration: 2500
         })
-        this.$parent.refresh(this.form.pid);
+        this.$parent.refresh([this.form.pid, this.pid]);
       }).catch(err => {
         console.log(err)
       })
@@ -185,7 +193,7 @@ export default {
           type: 'success',
           duration: 2500
         })
-        this.$parent.refresh(this.form.pid);
+        this.$parent.refresh([this.form.pid, this.pid]);
       }).catch(err => {
         console.log(err)
       })

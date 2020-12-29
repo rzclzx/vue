@@ -13,6 +13,7 @@ import SvgIcon from '@/components/SvgIcon/index.vue'
 import svgInit from '@/components/SvgIcon/index.js'
 import '@/styles/reset.less'
 import 'element-ui/lib/theme-chalk/index.css'
+import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 import '@/styles/public.less'
 import '@/styles/element.less'
 

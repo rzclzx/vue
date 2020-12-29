@@ -26,8 +26,9 @@ export function add(data) {
 
 export function del(id) {
   return request({
-    url: 'api/roles/' + id,
-    method: 'delete'
+    url: 'api/roles',
+    method: 'delete',
+    data: [id]
   })
 }
 

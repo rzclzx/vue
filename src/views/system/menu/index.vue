@@ -58,9 +58,9 @@
     >
       <el-table-column 
         label="菜单标题" 
-        align="center"
+        align="left"
         prop="title" 
-        width="130"
+        width="180"
       />
       <template  v-for="(item, key) in columns[prop]">
         <el-table-column
@@ -163,18 +163,20 @@ export default {
       this.params = Object.assign({ page: this.page, size: this.size, sort: sort }, this.query);
       return true;
     },
-    refresh(pid) {
-      if (!pid) {
-        this.init();
-        return;
-      }
-      if (this.maps.get(pid)) {
-        this.$refs.table.store.states.lazyTreeNodeMap[pid] = [];
-        const { tree, treeNode, resolve } = this.maps.get(pid);
-        get({ pid: tree.id }).then(res => {
-          resolve(res.content);
-        });
-      }
+    refresh(pids) {
+      pids.forEach(pid => {
+        if (!pid) {
+          this.init();
+          return;
+        }
+        if (this.maps.get(pid)) {
+          this.$refs.table.store.states.lazyTreeNodeMap[pid] = [];
+          const { tree, treeNode, resolve } = this.maps.get(pid);
+          get({ pid: tree.id }).then(res => {
+            resolve(res.content);
+          });
+        }
+      })
     },
     add() {
       this.isAdd = true;
@@ -189,7 +191,7 @@ export default {
       del(row.id).then(res => {
         this.$refs[row.id].doClose();
         this.dleChangePage();
-        this.refresh(row.pid);
+        this.refresh([row.pid]);
         this.$notify({
           title: '删除成功',
           type: 'success',

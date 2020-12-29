@@ -1,3 +1,3 @@
 module.exports = {
-  title: 'wvue后台管理系统'
+  title: 'vue后台管理系统'
 }
