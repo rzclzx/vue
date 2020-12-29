@@ -15,12 +15,29 @@
       label-width="90px"
       style="width: 100%"
     >
-      <el-form-item label="名称" prop="nickName">
+      <el-form-item label="字典标签" prop="label">
         <el-input 
           size="mini" 
-          v-model="form.nickName" 
+          v-model="form.label" 
           style="width:250px" 
         />
+      </el-form-item>
+      <el-form-item label="字典值" prop="value">
+        <el-input 
+          size="mini" 
+          v-model="form.value" 
+          style="width:250px" 
+        />
+      </el-form-item>
+      <el-form-item label="排序" prop="dictSort">
+        <el-input-number
+          style="width:250px"
+          :max="10000"
+          :min="0"
+          :controls="false"
+          size="mini" 
+          v-model="form.dictSort"
+        ></el-input-number>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -40,7 +57,9 @@ export default {
   data() {
     return {
       dialog: false,
-      form: {},
+      form: {
+        dictSort: 999
+      },
       rules: {
         // label: [
         //   { required: true, message: '请输入名称', trigger: 'blur' }
@@ -97,6 +116,9 @@ export default {
     resetForm () {
       this.dialog = false
       this.$refs.form.resetFields()
+      this.form = {
+        dictSort: 999
+      }
     }
   }
 }

@@ -15,10 +15,17 @@
       label-width="90px"
       style="width: 100%"
     >
-      <el-form-item label="名称" prop="nickName">
+      <el-form-item label="名称" prop="name">
         <el-input 
           size="mini" 
-          v-model="form.nickName" 
+          v-model="form.name" 
+          style="width:250px" 
+        />
+      </el-form-item>
+      <el-form-item label="描述" prop="description">
+        <el-input 
+          size="mini" 
+          v-model="form.description" 
           style="width:250px" 
         />
       </el-form-item>
