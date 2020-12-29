@@ -25,7 +25,7 @@ export function get(params) {
 
 export function add(data) {
   return request({
-    url: 'api/users',
+    url: 'api/menus',
     method: 'post',
     data
   })
@@ -33,14 +33,15 @@ export function add(data) {
 
 export function del(id) {
   return request({
-    url: 'api/users/' + id,
-    method: 'delete'
+    url: 'api/menus',
+    method: 'delete',
+    data: [id]
   })
 }
 
 export function edit(data) {
   return request({
-    url: 'api/users',
+    url: 'api/menus',
     method: 'put',
     data
   })

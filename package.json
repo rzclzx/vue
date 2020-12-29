@@ -15,6 +15,7 @@
     "screenfull": "^3.3.3",
     "svg-sprite-loader": "3.8.0",
     "svgo": "1.2.2",
+    "@riophae/vue-treeselect": "0.4.0",
     "core-js": "^3.6.5",
     "js-cookie": "2.2.0",
     "nprogress": "0.2.0",

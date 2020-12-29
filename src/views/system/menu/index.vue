@@ -42,6 +42,7 @@
       </div>
     </div>
     <el-table
+      ref="table"
       v-loading="loading"
       :data="data" 
       border 
@@ -109,7 +110,7 @@
                 <el-button
                   type="primary"
                   size="mini"
-                  @click="subDelete(scope.row.id)"
+                  @click="subDelete(scope.row)"
                 >确定</el-button>
               </div>
             </div>
@@ -148,7 +149,8 @@ export default {
   mixins: [initData],
   data() {
     return {
-      prop: 'menu'
+      prop: 'menu',
+      maps: new Map()
     }
   },
   created() {
@@ -161,6 +163,19 @@ export default {
       this.params = Object.assign({ page: this.page, size: this.size, sort: sort }, this.query);
       return true;
     },
+    refresh(pid) {
+      if (!pid) {
+        this.init();
+        return;
+      }
+      if (this.maps.get(pid)) {
+        this.$refs.table.store.states.lazyTreeNodeMap[pid] = [];
+        const { tree, treeNode, resolve } = this.maps.get(pid);
+        get({ pid: tree.id }).then(res => {
+          resolve(res.content);
+        });
+      }
+    },
     add() {
       this.isAdd = true;
       this.$refs.form.dialog = true;
@@ -170,23 +185,27 @@ export default {
       this.isAdd = false;
       this.$refs.form.dialog = true;
     },
-    subDelete(id) {
-      del(id).then(res => {
-        this.$refs[id].doClose();
+    subDelete(row) {
+      del(row.id).then(res => {
+        this.$refs[row.id].doClose();
         this.dleChangePage();
-        this.init();
+        this.refresh(row.pid);
         this.$notify({
           title: '删除成功',
           type: 'success',
           duration: 2500
         });
       }).catch(err => {
-        this.$refs[id].doClose();
+        this.$refs[row.id].doClose();
       })
     },
     getMenus(tree, treeNode, resolve) {
+      this.maps.set(
+        tree.id,
+        { tree, treeNode, resolve }
+      );
       get({ pid: tree.id }).then(res => {
-        resolve(res.content)
+        resolve(res.content);
       })
     },
   }

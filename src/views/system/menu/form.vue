@@ -16,8 +16,8 @@
       style="width: 100%"
       inline
     >
-      <el-form-item label="菜单类型" prop="type" style="width: 100%">
-        <el-radio-group v-model="form.type" size="mini">
+      <el-form-item label="菜单类型" prop="type">
+        <el-radio-group v-model="form.type" size="mini" style="width:250px">
           <el-radio-button label="0">目录</el-radio-button>
           <el-radio-button label="1">菜单</el-radio-button>
           <el-radio-button label="2">按钮</el-radio-button>
@@ -64,7 +64,7 @@
           style="width:250px" 
         />
       </el-form-item>
-      <el-form-item label="路由地址" prop="path" v-if="form.type == '1'">
+      <el-form-item label="路由地址" prop="path" v-if="form.type == '1' || form.type == '0'">
         <el-input 
           size="mini" 
           v-model="form.path" 
@@ -96,10 +96,12 @@
         />
       </el-form-item>
       <el-form-item label="上级目录" prop="pid">
-        <el-input 
-          size="mini" 
-          v-model="form.pid" 
-          style="width:250px" 
+        <treeselect
+          size="mini"
+          v-model="form.pid"
+          :options="menus"
+          style="width: 250px"
+          placeholder="顶级目录"
         />
       </el-form-item>
     </el-form>
@@ -111,11 +113,18 @@
 </template>
 
 <script>
-import { add, edit } from '@/api/menu';
+import { add, edit, getMenusTree } from '@/api/menu'
+import Treeselect from '@riophae/vue-treeselect'
+import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 export default {
+  components: {
+    Treeselect
+  },
   props: ['isAdd'],
   created() {
-    
+    getMenusTree().then(res => {
+      this.menus = res || [];
+    })
   },
   data() {
     return {
@@ -130,7 +139,8 @@ export default {
         // label: [
         //   { required: true, message: '请输入名称', trigger: 'blur' }
         // ]
-      }
+      },
+      menus: []
     }
   },
   computed: {
@@ -145,6 +155,7 @@ export default {
     doSubmit () {
       this.$refs.form.validate((valid) => {
         if (valid) {
+          this.form.pid = this.form.pid || 0;
           if (this.isAdd) {
             this.doAdd();
           } else {
@@ -161,7 +172,7 @@ export default {
           type: 'success',
           duration: 2500
         })
-        this.$parent.init()
+        this.$parent.refresh(this.form.pid);
       }).catch(err => {
         console.log(err)
       })
@@ -174,7 +185,7 @@ export default {
           type: 'success',
           duration: 2500
         })
-        this.$parent.init()
+        this.$parent.refresh(this.form.pid);
       }).catch(err => {
         console.log(err)
       })

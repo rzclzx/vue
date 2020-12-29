@@ -97,17 +97,18 @@ export const columns = {
       label: '排序',
       align: 'center'
     },
-    permission: {
+    path: {
       show: true,
       width: '',
-      label: '权限标识',
+      label: '路由地址',
       align: 'center'
     },
     component: {
       show: true,
       width: '',
       label: '组件路径',
-      align: 'center'
+      align: 'center',
+      no: '无'
     },
     iframe: {
       show: true,
