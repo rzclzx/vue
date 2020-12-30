@@ -202,6 +202,7 @@ export default {
     },
     save() {
       this.selfVals = this.$refs.tree.getCheckedKeys();
+      this.selfVals = this.selfVals.concat(this.$refs.tree.getHalfCheckedKeys());
       let menus = this.selfVals.map(item => {
         return {id: item};
       })
