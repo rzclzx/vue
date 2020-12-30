@@ -15,7 +15,7 @@
       <el-dropdown trigger="click">
         <div class="link flex-start-center">
           <i class="el-icon-user-solid" style="font-size:20px;margin-right:5px"></i>
-          <span style="margin-right:5px">admin</span>
+          <span style="margin-right:5px">{{ $store.state.user.user.user.username }}</span>
           <i class="el-icon-arrow-down"></i>
         </div>
         <el-dropdown-menu slot="dropdown">
