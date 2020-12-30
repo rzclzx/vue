@@ -96,9 +96,12 @@ export default {
         deptSort: 999
       },
       rules: {
-        // label: [
-        //   { required: true, message: '请输入名称', trigger: 'blur' }
-        // ]
+        name: [
+          { required: true, message: '请输入名称', trigger: 'blur' }
+        ],
+        deptSort: [
+          { required: true, message: '请输入排序', trigger: 'blur' }
+        ],
       },
       depts: [],
       pid: ''

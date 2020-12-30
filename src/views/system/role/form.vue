@@ -60,9 +60,9 @@ export default {
         level: 3
       },
       rules: {
-        // label: [
-        //   { required: true, message: '请输入名称', trigger: 'blur' }
-        // ]
+        name: [
+          { required: true, message: '请输入名称', trigger: 'blur' }
+        ]
       }
     }
   },

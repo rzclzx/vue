@@ -17,7 +17,7 @@
       inline
     >
       <el-form-item label="菜单类型" prop="type">
-        <el-radio-group v-model="form.type" size="mini" style="width:250px">
+        <el-radio-group v-model="form.type" size="mini" style="width:250px" @change="clearValid">
           <el-radio-button label="0">目录</el-radio-button>
           <el-radio-button label="1">菜单</el-radio-button>
           <el-radio-button label="2">按钮</el-radio-button>
@@ -141,9 +141,12 @@ export default {
         menuSort: 999
       },
       rules: {
-        // label: [
-        //   { required: true, message: '请输入名称', trigger: 'blur' }
-        // ]
+        title: [
+          { required: true, message: '请输入名称', trigger: 'blur' }
+        ],
+        path: [
+          { required: true, message: '请输入路由地址', trigger: 'blur' }
+        ]
       },
       menus: [],
       pid: ''
@@ -209,6 +212,11 @@ export default {
         hidden: false,
         menuSort: 999
       };
+    },
+    clearValid() {
+      let form = this.$utils.clone(this.form);
+      this.$refs.form.resetFields();
+      this.form = form;
     }
   }
 }

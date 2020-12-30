@@ -61,9 +61,15 @@ export default {
         dictSort: 999
       },
       rules: {
-        // label: [
-        //   { required: true, message: '请输入名称', trigger: 'blur' }
-        // ]
+        label: [
+          { required: true, message: '请输入字典标签', trigger: 'blur' }
+        ],
+        value: [
+          { required: true, message: '请输入字典值', trigger: 'blur' }
+        ],
+        dictSort: [
+          { required: true, message: '请输入排序', trigger: 'blur' }
+        ],
       }
     }
   },

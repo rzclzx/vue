@@ -49,9 +49,9 @@ export default {
       dialog: false,
       form: {},
       rules: {
-        // label: [
-        //   { required: true, message: '请输入名称', trigger: 'blur' }
-        // ]
+        name: [
+          { required: true, message: '请输入名称', trigger: 'blur' }
+        ]
       }
     }
   },
