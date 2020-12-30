@@ -167,7 +167,6 @@ export default {
     doSubmit () {
       this.$refs.form.validate((valid) => {
         if (valid) {
-          this.form.pid = this.form.pid || 0;
           if (this.isAdd) {
             this.doAdd();
           } else {
@@ -177,7 +176,9 @@ export default {
       });
     },
     doAdd() {
-      add(this.form).then(res => {
+      let form = this.$utils.clone(this.form);
+      form.pid = form.pid || 0;
+      add(form).then(res => {
         this.cancel();
         this.$notify({
           title: '添加成功',
@@ -190,7 +191,9 @@ export default {
       })
     },
     doEdit() {
-      edit(this.form).then(res => {
+      let form = this.$utils.clone(this.form);
+      form.pid = form.pid || 0;
+      edit(form).then(res => {
         this.cancel();
         this.$notify({
           title: '修改成功',
