@@ -151,6 +151,7 @@
               label: 'label',
               children: 'children'
             }"
+            :check-strictly="strictly"
             show-checkbox
             :node-key="'id'"
           >
@@ -183,7 +184,8 @@ export default {
       prop: 'role',
       selfVals: [],
       currentId: '',
-      menus: []
+      menus: [],
+      strictly: false
     }
   },
   created() {
@@ -194,11 +196,15 @@ export default {
   },
   methods: {
     handleCurrentChange(row) {
-      row = row || {};
-      this.currentId = row.id;
-      let menus = this.$utils.clone(row.menus) || [];
-      this.selfVals = menus.map(item => item.id);
-      this.$refs.tree.setCheckedKeys(this.selfVals);
+      this.strictly = true;
+      setTimeout(() =>{
+        row = row || {};
+        this.currentId = row.id;
+        let menus = this.$utils.clone(row.menus) || [];
+        this.selfVals = menus.map(item => item.id);
+        this.$refs.tree.setCheckedKeys(this.selfVals);
+        this.strictly = false;
+      }, 1);
     },
     save() {
       this.selfVals = this.$refs.tree.getCheckedKeys();
