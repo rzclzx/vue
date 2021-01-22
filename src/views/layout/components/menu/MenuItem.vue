@@ -19,7 +19,7 @@
         <span>{{ item.meta.title }}</span>
       </el-menu-item>
     </el-submenu>
-    <el-menu-item v-else :index="`${menu.path}${menu.children[0].path}`">
+    <el-menu-item v-else :index="`${menu.path}${menu.children && menu.children[0].path}`">
       <SvgIcon 
         :name="menu.meta.icon" 
         :styleObj="{
