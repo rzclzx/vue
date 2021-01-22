@@ -1,3 +1,4 @@
 module.exports = {
-  title: 'vue后台管理系统'
+  title: 'vue后台管理系统',
+  hasLogin: true
 }

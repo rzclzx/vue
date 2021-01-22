@@ -33,7 +33,8 @@ router.beforeEach((to, from, next) => {
     document.title = to.meta.title + ' - ' + config.title
   }
   NProgress.start()
-  if (Cookies.get('token')) {
+  let state = config.hasLogin ? Cookies.get('token') : true;
+  if (state) {
     // 已登录且要跳转的页面是登录页
     if (to.path === '/login') {
       next({ path: '/' })
