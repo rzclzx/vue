@@ -32,7 +32,12 @@ export default {
   },
   computed: {
     menus () {
-      return this.$store.state.user.menus.filter(item => !item.hidden) || [];
+      return this.$store.state.user.menus.filter(item => {
+        if (item.children) {
+          item.children = item.children.filter(child => !child.hidden);
+        }
+        return !item.hidden;
+      }) || [];
     },
     menuExpand() {
       return this.$store.state.app.menuExpand;
