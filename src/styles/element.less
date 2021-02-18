@@ -113,6 +113,15 @@
   text-align: center!important;
 }
 
+.CodeMirror-scroll::-webkit-scrollbar {
+  width: @columnscrollwidth!important;
+}
+.CodeMirror-scroll::-webkit-scrollbar-thumb {
+  // 方块
+  border-radius: @columnscrollradius!important;
+  background: @scrollbarthumb!important;
+}
+
 .vue-treeselect {
   height: 28px!important;
   line-height: 28px!important;

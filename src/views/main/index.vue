@@ -1,12 +1,15 @@
 <template>
   <div class="app-container">
-    main
+    <XsdTransJson />
   </div>
 </template>
 
 <script>
-import { getDepts } from '@/api/login'
+import XsdTransJson from '@/components/XsdTransJson'
 export default {
+  components: {
+    XsdTransJson
+  },
   data() {
     return {
       
