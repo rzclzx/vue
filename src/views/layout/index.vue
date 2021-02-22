@@ -47,15 +47,15 @@ export default {
     }
   },
   created() {
-    listDict({
-      page: 0,
-      size: 99999
-    }).then(res => {
-      let configDicts = this.$utils.clone(dicts);
-      let resDicts = res.content || [];
-      let dictList = configDicts.concat(resDicts);
-      this.$store.dispatch('setDict', dictList);
-    })
+    // listDict({
+    //   page: 0,
+    //   size: 99999
+    // }).then(res => {
+    //   let configDicts = this.$utils.clone(dicts);
+    //   let resDicts = res.content || [];
+    //   let dictList = configDicts.concat(resDicts);
+    //   this.$store.dispatch('setDict', dictList);
+    // })
   },
   computed: {
     menuExpand() {

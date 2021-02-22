@@ -1,15 +1,12 @@
 <template>
   <div class="app-container">
-    <XsdTransJson />
+    main
   </div>
 </template>
 
 <script>
-import XsdTransJson from '@/components/XsdTransJson'
+import { index } from '@/api/test'
 export default {
-  components: {
-    XsdTransJson
-  },
   data() {
     return {
       
@@ -19,7 +16,9 @@ export default {
     
   },
   created() {
-    
+    index().then(res => {
+      console.log(res)
+    })
   },
   methods: {
 
