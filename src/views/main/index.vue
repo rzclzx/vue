@@ -1,24 +1,28 @@
 <template>
   <div class="app-container">
-    main
+    <span>{{ aaa.a }}</span>
+    <SyncPropTest :aaa.sync="aaa" />
   </div>
 </template>
 
 <script>
-import { index } from '@/api/test'
+import SyncPropTest from './test/SyncPropTest'
 export default {
+  components: {
+    SyncPropTest
+  },
   data() {
     return {
-      
+      aaa: {
+        a: 1
+      }
     }
   },
   computed: {
     
   },
   created() {
-    index().then(res => {
-      console.log(res)
-    })
+    
   },
   methods: {
 
