@@ -11,9 +11,11 @@ import columnsInit from '@/assets/config/columns'
 import ImgIcon from '@/components/ImgIcon'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import svgInit from '@/components/SvgIcon/index.js'
+import VueVirtualScroller from 'vue-virtual-scroller'
 import '@/styles/reset.less'
 import 'element-ui/lib/theme-chalk/index.css'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
+import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 import '@/styles/public.less'
 import '@/styles/element.less'
 
@@ -24,6 +26,8 @@ document.title = config.title
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
+
+Vue.use(VueVirtualScroller)
 
 Vue.component('SvgIcon', SvgIcon)
 svgInit()

@@ -1,21 +1,18 @@
 <template>
   <div class="app-container">
-    <span>{{ aaa.a }}</span>
-    <SyncPropTest :aaa.sync="aaa" />
+    <VueVirtualScrollerTest />
   </div>
 </template>
 
 <script>
-import SyncPropTest from './test/SyncPropTest'
+import VueVirtualScrollerTest from './test/VueVirtualScrollerTest'
 export default {
   components: {
-    SyncPropTest
+    VueVirtualScrollerTest
   },
   data() {
     return {
-      aaa: {
-        a: 1
-      }
+      
     }
   },
   computed: {
