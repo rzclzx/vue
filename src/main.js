@@ -12,6 +12,8 @@ import ImgIcon from '@/components/ImgIcon'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import svgInit from '@/components/SvgIcon/index.js'
 import VueVirtualScroller from 'vue-virtual-scroller'
+import VXETable from 'vxe-table'
+import 'vxe-table/lib/style.css'
 import '@/styles/reset.less'
 import 'element-ui/lib/theme-chalk/index.css'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
@@ -26,6 +28,8 @@ document.title = config.title
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
+
+Vue.use(VXETable)
 
 Vue.use(VueVirtualScroller)
 
