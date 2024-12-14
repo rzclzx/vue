@@ -36,7 +36,7 @@ export default [
     component: 'Layout',
     single: true,
     meta: {
-      icon: 'el-icon-setting',
+      icon: 'tools',
       title: '配置',
       noCache: false,
     },
