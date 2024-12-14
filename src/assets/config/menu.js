@@ -21,7 +21,7 @@ export default [
         name: '首页',
         path: 'dashboard',
         hidden: false,
-        component: 'main/index',
+        component: 'main/index1',
         meta: {
           title: '首页',
           noCache: true
