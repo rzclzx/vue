@@ -132,8 +132,8 @@ export default {
       let lenabs = Math.abs(len)
       let scale = lenabs / this.buyLimit
       let scalefinal = len > 0 ? (1 + scale) : (1 - scale)
-      this.value = this.total * scalefinal
-      this.valuelen = this.value - this.total
+      this.value = this.trans(this.total * scalefinal)
+      this.valuelen = this.trans(this.value - this.total)
     }
   }
 }
