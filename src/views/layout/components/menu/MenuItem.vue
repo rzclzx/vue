@@ -19,7 +19,7 @@
         <span>{{ item.meta.title }}</span>
       </el-menu-item>
     </el-submenu>
-    <el-menu-item v-else :index="`${menu.path}${menu.children && menu.children[0].path}`">
+    <el-menu-item v-else :index="`${menu.path}${menu.children && menu.children[0].path}`" @click="go">
       <SvgIcon 
         :name="menu.meta.icon" 
         :styleObj="{
@@ -46,7 +46,10 @@ export default {
     
   },
   methods: {
-    
+    go() {
+      let path = `${this.menu.path}/${this.menu.children[0].path}`
+      this.$router.push(path)
+    }
   }
 }
 </script>

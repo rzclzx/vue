@@ -86,12 +86,15 @@ export default {
       // 总结余
       value: 0,
       // 止盈倍数
-      scale: 1.5,
+      scale: undefined,
       // 总收益
       valuelen: 0,
       // 数据
       data: getData()
     }
+  },
+  created() {
+    this.scale = localStorage.getItem('scale')*1 || this.$store.state.app.scale
   },
   methods: {
     /**

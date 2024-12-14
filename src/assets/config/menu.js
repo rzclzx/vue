@@ -29,6 +29,30 @@ export default [
       }
     ]
   },
+  {
+    name: '配置目录',
+    path: '/config',
+    hidden: false,
+    component: 'Layout',
+    single: true,
+    meta: {
+      icon: 'el-icon-setting',
+      title: '配置',
+      noCache: false,
+    },
+    children: [
+      {
+        name: '配置',
+        path: 'config',
+        hidden: false,
+        component: 'config/index',
+        meta: {
+          title: '配置',
+          noCache: true
+        }
+      }
+    ]
+  },
   // 二级菜单格式
   // {
   //   name: '系统管理',

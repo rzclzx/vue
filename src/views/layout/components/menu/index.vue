@@ -9,7 +9,6 @@
     background-color="#1F335C"
     text-color="#fff"
     active-text-color="#fff"
-    @select="go"
   >
     <MenuItem 
       v-for="menu in menus"
@@ -46,11 +45,6 @@ export default {
   created() {
     
   },
-  methods: {
-    go (path) {
-      this.$router.push(path);
-    }
-  }
 }
 </script>
 

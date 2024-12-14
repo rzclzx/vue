@@ -3,7 +3,7 @@ const getData = () => {
   return _.cloneDeep([
     {
       ind: 0,
-      a: 0,
+      a: undefined,
       b: 0,
       c: 0
     },
