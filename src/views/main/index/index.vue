@@ -64,6 +64,7 @@
 </template>
 <script>
 import getData from './data'
+import './index.css'
 export default {
   data() {
     return {
