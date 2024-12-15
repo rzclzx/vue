@@ -2,12 +2,7 @@
   <div class="app-container">
     <div class="flex-start-center">
       <span style="width: 100px">总资金：</span>
-      <el-input-number :controls="false" v-model="total" style="width: 180px" size="mini"></el-input-number>
-    </div>
-    <el-divider></el-divider>
-    <div class="flex-start-center">
-      <span style="width: 100px">当前档位：</span>
-      <el-input-number :controls="false" v-model="current" style="width: 180px" size="mini"></el-input-number>
+      <el-input-number :controls="false" v-model="total" style="width: 180px" size="mini" @change="change(data[0].a)"></el-input-number>
     </div>
     <el-divider></el-divider>
     <div class="flex-start-center">
@@ -16,13 +11,8 @@
     </div>
     <el-divider></el-divider>
     <div class="flex-start-center">
-      <span style="width: 100px">止损点：</span>
-      <span>{{ limit }}</span>
-    </div>
-    <el-divider></el-divider>
-    <div class="flex-start-center">
-      <span style="width: 100px">止损总亏：</span>
-      <span>{{ limitm }}</span>
+      <span style="width: 100px">当前档位：</span>
+      <span>{{ current }}</span>
     </div>
     <el-divider></el-divider>
     <div class="flex-start-center">
@@ -35,7 +25,8 @@
       border
       size="mini"
       highlight-current-row
-      style="width: 100%">
+      style="width: 100%"
+      @current-change="currentChange">
       <el-table-column
         width="50"
         prop="ind"
@@ -74,7 +65,7 @@ export default {
   data() {
     return {
       // 当前档位
-      current: undefined,
+      current: 0,
       // 总资金
       total: undefined,
       // 止损点
@@ -97,11 +88,14 @@ export default {
     this.scale = localStorage.getItem('scale')*1 || this.$store.state.app.scale
   },
   methods: {
+    currentChange(val) {
+      this.current = val && val.ind
+    },
     /**
      * 重置所有数据
      */
     refresh() {
-      this.current = undefined
+      this.current = 0
       this.total = undefined
       this.limit = 0
       this.limitm = 0
@@ -116,20 +110,20 @@ export default {
       return b / 100000000
     },
     change(val) {
-      if (!this.total) {
-        alert('请输入总金额')
+      if (!val) {
         return
       }
+      let total = this.total || 0
       this.data[0].a = val
       this.data[0].b = this.trans(this.data[0].a * this.scale)
-      this.data[0].c = this.total * 0.5
+      this.data[0].c = total * 0.5
       for (let i = 1; i < this.data.length; i++) {
         this.data[i].a = this.trans(this.data[0].a * Math.pow(0.9, i))
         this.data[i].b = this.trans(this.data[i].a * (this.scale + 0.1*i))
-        this.data[i].c = this.total * 0.1
+        this.data[i].c = total * 0.1
       }
       this.limit = this.trans(this.data[0].a * Math.pow(0.9, 6))
-      this.limitm = this.trans(this.total * 0.3657205)
+      this.limitm = this.trans(total * 0.3657205)
     },
     todo() {
       if (this.current === undefined || this.mylimit === undefined) {
