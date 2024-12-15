@@ -49,7 +49,7 @@
       <span>{{ current }}</span>
     </div>
     <el-divider></el-divider>
-    <!-- <div class="flex-start-center">
+    <div class="flex-start-center">
       <span style="width: 100px">止盈点：</span>
       <el-input-number :controls="false" v-model="mylimit" style="width: 180px" size="mini"></el-input-number>
     </div>
@@ -57,7 +57,7 @@
     <div class="flex-start-center">
       <el-button type="primary" size="mini" @click="todo">固定价止盈</el-button>
     </div>
-    <el-divider></el-divider> -->
+    <el-divider></el-divider>
     <div>总结余：{{ value }}</div>
     <div>总收益：{{ valuelen }}</div>
   </div>
