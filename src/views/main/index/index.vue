@@ -49,7 +49,7 @@
       <span>{{ current }}</span>
     </div>
     <el-divider></el-divider>
-    <div class="flex-start-center">
+    <!-- <div class="flex-start-center">
       <span style="width: 100px">止盈点：</span>
       <el-input-number :controls="false" v-model="mylimit" style="width: 180px" size="mini"></el-input-number>
     </div>
@@ -57,7 +57,7 @@
     <div class="flex-start-center">
       <el-button type="primary" size="mini" @click="todo">固定价止盈</el-button>
     </div>
-    <el-divider></el-divider>
+    <el-divider></el-divider> -->
     <div>总结余：{{ value }}</div>
     <div>总收益：{{ valuelen }}</div>
   </div>
@@ -95,7 +95,7 @@ export default {
   },
   methods: {
     currentChange(val) {
-      this.current = val && val.ind
+      this.current = val ? val.ind : this.current
     },
     /**
      * 重置所有数据
@@ -134,14 +134,12 @@ export default {
     },
     todo() {
       if (this.current === undefined || this.mylimit === undefined) {
-        alert('请输入当前档位和止盈点')
         return
       }
       this.ok({}, this.current, this.mylimit)
     },
     ok(scope, index, mylimit) {
       if (!this.total || !this.data[0].a) {
-        alert('请输入总资金和买入点')
         return
       }
       this.current = index === undefined ? scope.$index : index
