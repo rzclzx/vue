@@ -2,24 +2,17 @@
   <div class="app-container">
     <div class="flex-start-center">
       <span style="width: 100px">总资金：</span>
-      <el-input-number :controls="false" v-model="total" style="width: 180px" size="mini" @change="change(data[0].a)"></el-input-number>
+      <el-input-number :controls="false" v-model="total" style="width: 180px" size="mini" @change="change(buyLimit)"></el-input-number>
     </div>
     <el-divider></el-divider>
     <div class="flex-start-center">
-      <span style="width: 100px">止盈点：</span>
-      <el-input-number :controls="false" v-model="mylimit" style="width: 180px" size="mini"></el-input-number>
+      <span style="width: 100px">买入点：</span>
+      <el-input-number :controls="false" v-model="buyLimit" style="width: 180px" size="mini" @change="change"></el-input-number>
     </div>
     <el-divider></el-divider>
-    <div class="flex-start-center">
-      <span style="width: 100px">当前档位：</span>
-      <span>{{ current }}</span>
+    <div class="flex-start-center" style="margin-bottom: 10px">
+      <i class="el-icon-refresh link" style="font-size: 30px" @click="refresh"></i>
     </div>
-    <el-divider></el-divider>
-    <div class="flex-start-center">
-      <el-button type="primary" size="mini" @click="todo">固定价止盈</el-button>
-      <i class="el-icon-refresh link" style="margin-left: 50px; font-size: 30px" @click="refresh"></i>
-    </div>
-    <el-divider></el-divider>
     <el-table
       :data="data"
       border
@@ -35,10 +28,6 @@
       <el-table-column
         prop="a"
         label="买入点">
-        <template slot-scope="scope">
-          <el-input-number :controls="false" size="mini" v-if="scope.$index == 0" :value="scope.row.a" @change="change"></el-input-number>
-          <span v-else>{{ scope.row.a }}</span>
-        </template>
       </el-table-column>
       <el-table-column
         prop="b"
@@ -55,6 +44,20 @@
         </template>
       </el-table-column>
     </el-table>
+    <div class="flex-start-center" style="margin-top: 10px">
+      <span style="width: 100px">当前档位：</span>
+      <span>{{ current }}</span>
+    </div>
+    <el-divider></el-divider>
+    <div class="flex-start-center">
+      <span style="width: 100px">止盈点：</span>
+      <el-input-number :controls="false" v-model="mylimit" style="width: 180px" size="mini"></el-input-number>
+    </div>
+    <el-divider></el-divider>
+    <div class="flex-start-center">
+      <el-button type="primary" size="mini" @click="todo">固定价止盈</el-button>
+    </div>
+    <el-divider></el-divider>
     <div>总结余：{{ value }}</div>
     <div>总收益：{{ valuelen }}</div>
   </div>
@@ -64,6 +67,8 @@ import getData from './data'
 export default {
   data() {
     return {
+      // 买入点
+      buyLimit: undefined,
       // 当前档位
       current: 0,
       // 总资金
@@ -95,6 +100,7 @@ export default {
      * 重置所有数据
      */
     refresh() {
+      this.buyLimit = undefined
       this.current = 0
       this.total = undefined
       this.limit = 0
