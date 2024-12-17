@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <div class="flex-start-center">
+    <!-- <div class="flex-start-center">
       <span style="width: 100px">牛高：</span>
       <el-input-number :controls="false" v-model="nTop" style="width: 180px" size="mini" @change="getBuy(nTop, 0.8, 'n')"></el-input-number>
     </div>
@@ -14,7 +14,7 @@
       <span style="width: 100px">计划买入点：</span>
       <span>{{ planBuy }}</span>
     </div>
-    <el-divider></el-divider>
+    <el-divider></el-divider> -->
     <div class="flex-start-center">
       <span style="width: 100px">总资金：</span>
       <el-input-number :controls="false" v-model="total" style="width: 180px" size="mini" @change="change(buyLimit)"></el-input-number>
