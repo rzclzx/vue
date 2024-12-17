@@ -1,6 +1,21 @@
 <template>
   <div class="app-container">
     <div class="flex-start-center">
+      <span style="width: 100px">牛高：</span>
+      <el-input-number :controls="false" v-model="nTop" style="width: 180px" size="mini" @change="getBuy(nTop, 0.8, 'n')"></el-input-number>
+    </div>
+    <el-divider></el-divider>
+    <div class="flex-start-center">
+      <span style="width: 100px">熊高：</span>
+      <el-input-number :controls="false" v-model="xTop" style="width: 180px" size="mini" @change="getBuy(xTop, 0.5)"></el-input-number>
+    </div>
+    <el-divider></el-divider>
+    <div class="flex-start-center">
+      <span style="width: 100px">计划买入点：</span>
+      <span>{{ planBuy }}</span>
+    </div>
+    <el-divider></el-divider>
+    <div class="flex-start-center">
       <span style="width: 100px">总资金：</span>
       <el-input-number :controls="false" v-model="total" style="width: 180px" size="mini" @change="change(buyLimit)"></el-input-number>
     </div>
@@ -90,7 +105,13 @@ export default {
       // 数据
       data: getData(),
       // 总收益率
-      rate: 0
+      rate: 0,
+      // 牛高
+      nTop: undefined,
+      // 熊高
+      xTop: undefined,
+      // 计划买入点
+      planBuy: undefined
     }
   },
   created() {
@@ -114,6 +135,20 @@ export default {
       this.valuelen = 0
       this.data = getData()
       this.rate = 0
+      this.planBuy = undefined
+      this.nTop = undefined
+      this.xTop = undefined
+    },
+    getBuy(value, rete, type) {
+      if (value === undefined) {
+        return
+      }
+      if (type === 'n') {
+        this.xTop = undefined
+      } else {
+        this.nTop = undefined
+      }
+      this.planBuy = this.trans(value * rete)
     },
     trans(value) {
       let a = value * 100000000
