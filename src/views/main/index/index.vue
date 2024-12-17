@@ -162,10 +162,10 @@ export default {
       let total = this.total || 0
       this.data[0].a = val
       this.data[0].b = this.trans(this.data[0].a * this.scale)
-      this.data[0].c = total * 0.5
+      this.data[0].c = total * 0.1
       for (let i = 1; i < this.data.length; i++) {
         this.data[i].a = this.trans(this.data[0].a * Math.pow(0.9, i))
-        this.data[i].b = this.trans(this.data[i].a * (this.scale + 0.07*i))
+        this.data[i].b = this.trans(this.data[i].a * (this.scale + 0.082*i))
         this.data[i].c = total * 0.1
       }
       this.limit = this.trans(this.data[0].a * Math.pow(0.9, 6))

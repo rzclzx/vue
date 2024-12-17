@@ -1,42 +1,14 @@
 import _ from 'lodash'
+let arr = []
+for (let i = 0; i < 10; i++) {
+  arr.push({
+    ind: i,
+    a: 0,
+    b: 0,
+    c: 0
+  })
+}
 const getData = () => {
-  return _.cloneDeep([
-    {
-      ind: 0,
-      a: 0,
-      b: 0,
-      c: 0
-    },
-    {
-      ind: 1,
-      a: 0,
-      b: 0,
-      c: 0
-    },
-    {
-      ind: 2,
-      a: 0,
-      b: 0,
-      c: 0
-    },
-    {
-      ind: 3,
-      a: 0,
-      b: 0,
-      c: 0
-    },
-    {
-      ind: 4,
-      a: 0,
-      b: 0,
-      c: 0
-    },
-    {
-      ind: 5,
-      a: 0,
-      b: 0,
-      c: 0
-    }
-  ])
+  return _.cloneDeep(arr)
 }
 export default getData
