@@ -60,6 +60,7 @@
     <el-divider></el-divider>
     <div>总结余：{{ value }}</div>
     <div>总收益：{{ valuelen }}</div>
+    <div>收益率：{{ rate }}%</div>
   </div>
 </template>
 <script>
@@ -87,7 +88,9 @@ export default {
       // 总收益
       valuelen: 0,
       // 数据
-      data: getData()
+      data: getData(),
+      // 总收益率
+      rate: 0
     }
   },
   created() {
@@ -110,6 +113,7 @@ export default {
       this.value = 0
       this.valuelen = 0
       this.data = getData()
+      this.rate = 0
     },
     trans(value) {
       let a = value * 100000000
@@ -126,7 +130,7 @@ export default {
       this.data[0].c = total * 0.5
       for (let i = 1; i < this.data.length; i++) {
         this.data[i].a = this.trans(this.data[0].a * Math.pow(0.9, i))
-        this.data[i].b = this.trans(this.data[i].a * (this.scale + 0.1*i))
+        this.data[i].b = this.trans(this.data[i].a * (this.scale + 0.07*i))
         this.data[i].c = total * 0.1
       }
       this.limit = this.trans(this.data[0].a * Math.pow(0.9, 6))
@@ -151,6 +155,7 @@ export default {
         this.valuelen += this.trans(((value - this.data[i].a) / this.data[i].a) * m)
         if (this.current == i) {
           this.value = this.total + this.valuelen
+          this.rate = this.trans(Math.round(this.valuelen / this.total * 10000) / 100)
           return
         }
       }
