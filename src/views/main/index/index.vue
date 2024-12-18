@@ -88,17 +88,19 @@ export default {
       // 数据
       data: getData(),
       // 追入率
-      ratein: 0.8,
+      ratein: 0.9,
       // 首次买入率
       firstRate: 0.5,
       // 后续买入率
       lastRate: 0.1,
       // 止盈步长
-      step: 0.2
+      step: 0.082
     }
   },
   created() {
     this.scale = localStorage.getItem('scale')*1 || this.$store.state.app.scale
+    this.ratein = localStorage.getItem('ratein')*1 || this.$store.state.app.ratein
+    this.step = localStorage.getItem('step')*1 || this.$store.state.app.step
   },
   methods: {
     currentChange(item) {
