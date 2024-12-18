@@ -7,7 +7,7 @@ let state = {
   // 追入率
   ratein: 0.9,
   // 止盈步长
-  step: 0.082
+  step: 0.09
 }
 
 let mutations = {
