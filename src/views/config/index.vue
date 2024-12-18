@@ -9,10 +9,10 @@
       <el-input-number :controls="false" v-model="scale" style="width: 180px" size="mini" @change="changescale"></el-input-number>
     </div>
     <el-divider></el-divider>
-    <div class="flex-start-center">
+    <!-- <div class="flex-start-center">
       <span style="width: 100px">止损倍数：</span>
       <el-input-number :controls="false" v-model="scaledown" style="width: 180px" size="mini" @change="changescaledown"></el-input-number>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>

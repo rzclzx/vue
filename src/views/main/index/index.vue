@@ -1,20 +1,5 @@
 <template>
   <div class="app-container">
-    <!-- <div class="flex-start-center">
-      <span style="width: 100px">牛高：</span>
-      <el-input-number :controls="false" v-model="nTop" style="width: 180px" size="mini" @change="getBuy(nTop, 0.8, 'n')"></el-input-number>
-    </div>
-    <el-divider></el-divider>
-    <div class="flex-start-center">
-      <span style="width: 100px">熊高：</span>
-      <el-input-number :controls="false" v-model="xTop" style="width: 180px" size="mini" @change="getBuy(xTop, 0.5)"></el-input-number>
-    </div>
-    <el-divider></el-divider>
-    <div class="flex-start-center">
-      <span style="width: 100px">计划买入点：</span>
-      <span>{{ planBuy }}</span>
-    </div>
-    <el-divider></el-divider> -->
     <div class="flex-start-center">
       <span style="width: 100px">总资金：</span>
       <el-input-number :controls="false" v-model="total" style="width: 180px" size="mini" @change="change(buyLimit)"></el-input-number>
@@ -55,7 +40,7 @@
       <el-table-column
         label="操作">
         <template slot-scope="scope">
-          <el-button type="text" @click="ok(scope)">止盈</el-button>
+          <el-button type="text" @click="sell(scope)">止盈</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -66,11 +51,11 @@
     <el-divider></el-divider>
     <div class="flex-start-center">
       <span style="width: 100px">止盈点：</span>
-      <el-input-number :controls="false" v-model="mylimit" style="width: 180px" size="mini"></el-input-number>
+      <el-input-number :controls="false" v-model="sellLimit" style="width: 180px" size="mini"></el-input-number>
     </div>
     <el-divider></el-divider>
     <div class="flex-start-center">
-      <el-button type="primary" size="mini" @click="todo">固定价止盈</el-button>
+      <el-button type="primary" size="mini" @click="sell()">固定价止盈</el-button>
     </div>
     <el-divider></el-divider>
     <div>总结余：{{ value }}</div>
@@ -90,36 +75,34 @@ export default {
       current: 0,
       // 总资金
       total: undefined,
-      // 止损点
-      limit: 0,
-      // 止损总亏
-      limitm: 0,
       // 止盈点
-      mylimit: undefined,
+      sellLimit: undefined,
       // 总结余
       value: 0,
-      // 止盈倍数
-      scale: undefined,
       // 总收益
       valuelen: 0,
-      // 数据
-      data: getData(),
+      // 止盈倍数
+      scale: undefined,
       // 总收益率
       rate: 0,
-      // 牛高
-      nTop: undefined,
-      // 熊高
-      xTop: undefined,
-      // 计划买入点
-      planBuy: undefined
+      // 数据
+      data: getData(),
+      // 追入率
+      ratein: 0.8,
+      // 首次买入率
+      firstRate: 0.5,
+      // 后续买入率
+      lastRate: 0.1,
+      // 止盈步长
+      step: 0.2
     }
   },
   created() {
     this.scale = localStorage.getItem('scale')*1 || this.$store.state.app.scale
   },
   methods: {
-    currentChange(val) {
-      this.current = val ? val.ind : this.current
+    currentChange(item) {
+      this.current = item ? item.ind : this.current
     },
     /**
      * 重置所有数据
@@ -128,27 +111,11 @@ export default {
       this.buyLimit = undefined
       this.current = 0
       this.total = undefined
-      this.limit = 0
-      this.limitm = 0
-      this.mylimit = undefined
+      this.sellLimit = undefined
       this.value = 0
       this.valuelen = 0
       this.data = getData()
       this.rate = 0
-      this.planBuy = undefined
-      this.nTop = undefined
-      this.xTop = undefined
-    },
-    getBuy(value, rete, type) {
-      if (value === undefined) {
-        return
-      }
-      if (type === 'n') {
-        this.xTop = undefined
-      } else {
-        this.nTop = undefined
-      }
-      this.planBuy = this.trans(value * rete)
     },
     trans(value) {
       let a = value * 100000000
@@ -162,32 +129,23 @@ export default {
       let total = this.total || 0
       this.data[0].a = val
       this.data[0].b = this.trans(this.data[0].a * this.scale)
-      this.data[0].c = total * 0.1
+      this.data[0].c = total * this.firstRate
       for (let i = 1; i < this.data.length; i++) {
-        this.data[i].a = this.trans(this.data[0].a * Math.pow(0.9, i))
-        this.data[i].b = this.trans(this.data[i].a * (this.scale + 0.082*i))
-        this.data[i].c = total * 0.1
+        this.data[i].a = this.trans(this.data[0].a * Math.pow(this.ratein, i))
+        this.data[i].b = this.trans(this.data[i].a * (this.scale + this.step*i))
+        this.data[i].c = total * this.lastRate
       }
-      this.limit = this.trans(this.data[0].a * Math.pow(0.9, 6))
-      this.limitm = this.trans(total * 0.3657205)
     },
-    todo() {
-      if (this.current === undefined || this.mylimit === undefined) {
+    sell(scope) {
+      this.sellLimit = scope ? scope.row.b : this.sellLimit
+      this.current = scope ? scope.$index : this.current
+      if (!this.total || !this.buyLimit || !this.sellLimit) {
         return
       }
-      this.ok({}, this.current, this.mylimit)
-    },
-    ok(scope, index, mylimit) {
-      if (!this.total || !this.data[0].a) {
-        return
-      }
-      this.current = index === undefined ? scope.$index : index
-      this.mylimit = mylimit === undefined ? scope.row.b : mylimit
       this.valuelen = 0
-      let value = this.mylimit
       for (let i = 0; i < this.data.length; i++) {
-        let m = i === 0 ? this.total * 0.5 : this.total * 0.1
-        this.valuelen += this.trans(((value - this.data[i].a) / this.data[i].a) * m)
+        let m = i === 0 ? this.total * this.firstRate : this.total * this.lastRate
+        this.valuelen += this.trans(((this.sellLimit - this.data[i].a) / this.data[i].a) * m)
         if (this.current == i) {
           this.value = this.total + this.valuelen
           this.rate = this.trans(Math.round(this.valuelen / this.total * 10000) / 100)

@@ -3,8 +3,7 @@ import utils from '@/utils/utils'
 let state = {
   menuExpand: false,
   dict: {},
-  scale: 1.5,
-  scaledown: 0.75
+  scale: 1.1
 }
 
 let mutations = {
