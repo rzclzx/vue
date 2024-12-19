@@ -1,3 +1,6 @@
 .el-divider {
   margin: 10px 0!important;
 }
+.el-table__row td {
+  padding: 0!important;
+}
