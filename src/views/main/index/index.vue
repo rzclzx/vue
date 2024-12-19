@@ -90,11 +90,11 @@ export default {
       // 追入率
       ratein: 0.9,
       // 首次买入率
-      firstRate: 0.5,
+      firstRate: 0.4,
       // 后续买入率
-      lastRate: 0.1,
+      lastRate: 0.06,
       // 止盈步长
-      step: 0.082
+      step: 0.09
     }
   },
   created() {
@@ -150,6 +150,8 @@ export default {
         this.valuelen += this.trans(((this.sellLimit - this.data[i].a) / this.data[i].a) * m)
         if (this.current == i) {
           this.value = this.total + this.valuelen
+          this.value = this.trans(this.value)
+          this.valuelen = this.trans(this.valuelen)
           this.rate = this.trans(Math.round(this.valuelen / this.total * 10000) / 100)
           return
         }
