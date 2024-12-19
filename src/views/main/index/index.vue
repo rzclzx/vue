@@ -12,6 +12,14 @@
     <el-divider></el-divider>
     <div class="flex-start-center" style="margin-bottom: 10px">
       <i class="el-icon-refresh link" style="font-size: 30px" @click="refresh"></i>
+      <div class="flex-start-center" style="margin-left: 300px">
+        <span style="width: 100px">阶段高点：</span>
+        <el-input-number :controls="false" v-model="max" style="width: 180px" size="mini"></el-input-number>
+      </div>
+      <div class="flex-start-center" style="margin-left: 10px">
+        <span style="width: 100px">买点值：</span>
+        <span>{{ ratebackval }}</span>
+      </div>
     </div>
     <el-table
       :data="data"
@@ -94,7 +102,22 @@ export default {
       // 后续买入率
       lastRate: 0.06,
       // 止盈步长
-      step: 0.09
+      step: 0.09,
+      // 最高点
+      max: undefined,
+      // 回跌率
+      rateback: 0.8,
+      // 回跌值
+      ratebackval: undefined
+    }
+  },
+  watch: {
+    max(val) {
+      if (!val) {
+        this.ratebackval = undefined
+      } else {
+        this.ratebackval = this.trans(val * this.rateback)
+      }
     }
   },
   created() {
