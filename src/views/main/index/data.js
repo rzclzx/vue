@@ -1,6 +1,6 @@
 import _ from 'lodash'
 let arr = []
-for (let i = 0; i < 11; i++) {
+for (let i = 0; i < 6; i++) {
   arr.push({
     ind: i,
     a: 0,

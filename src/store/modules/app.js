@@ -3,11 +3,11 @@ import utils from '@/utils/utils'
 let state = {
   menuExpand: false,
   dict: {},
-  scale: 1.1,
+  scale: 1.5,
   // 追入率
-  ratein: 0.9,
+  ratein: 0.8,
   // 止盈步长
-  step: 0.09
+  step: 0.2
 }
 
 let mutations = {

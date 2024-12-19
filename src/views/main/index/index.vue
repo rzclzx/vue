@@ -12,14 +12,14 @@
     <el-divider></el-divider>
     <div class="flex-start-center" style="margin-bottom: 10px">
       <i class="el-icon-refresh link" style="font-size: 30px" @click="refresh"></i>
-      <div class="flex-start-center" style="margin-left: 300px">
+      <!-- <div class="flex-start-center" style="margin-left: 300px">
         <span style="width: 100px">阶段高点：</span>
         <el-input-number :controls="false" v-model="max" style="width: 180px" size="mini"></el-input-number>
       </div>
       <div class="flex-start-center" style="margin-left: 10px">
         <span style="width: 100px">买点值：</span>
         <span>{{ ratebackval }}</span>
-      </div>
+      </div> -->
     </div>
     <el-table
       :data="data"
@@ -98,15 +98,15 @@ export default {
       // 追入率
       ratein: undefined,
       // 首次买入率
-      firstRate: 0.4,
+      firstRate: 0.5,
       // 后续买入率
-      lastRate: 0.06,
+      lastRate: 0.1,
       // 止盈步长
       step: undefined,
       // 最高点
       max: undefined,
       // 回跌率
-      rateback: 0.8,
+      rateback: 0.9,
       // 回跌值
       ratebackval: undefined
     }
@@ -141,6 +141,8 @@ export default {
       this.valuelen = 0
       this.data = getData()
       this.rate = 0
+      this.max = undefined
+      this.ratebackval = undefined
     },
     trans(value) {
       let a = value * 100000000
