@@ -96,13 +96,13 @@ export default {
       // 数据
       data: getData(),
       // 追入率
-      ratein: 0.9,
+      ratein: undefined,
       // 首次买入率
       firstRate: 0.4,
       // 后续买入率
       lastRate: 0.06,
       // 止盈步长
-      step: 0.09,
+      step: undefined,
       // 最高点
       max: undefined,
       // 回跌率
